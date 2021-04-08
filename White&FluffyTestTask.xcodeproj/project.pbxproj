@@ -107,17 +107,17 @@
 				EFFFD238261AEFC9009EE71B /* WeatherProtocols.swift */,
 				EFFFD239261AEFC9009EE71B /* WeatherInteractor.swift */,
 				EFFFD23A261AEFC9009EE71B /* WeatherContainer.swift */,
-				EFFFD242261AF009009EE71B /* NetworkMfnager */,
+				EFFFD242261AF009009EE71B /* NetworkManager */,
 			);
 			path = "Weather (VIPER)";
 			sourceTree = "<group>";
 		};
-		EFFFD242261AF009009EE71B /* NetworkMfnager */ = {
+		EFFFD242261AF009009EE71B /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
 				EFFFD243261AF038009EE71B /* NetworkManager.swift */,
 			);
-			path = NetworkMfnager;
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		EFFFD245261AF055009EE71B /* Models */ = {

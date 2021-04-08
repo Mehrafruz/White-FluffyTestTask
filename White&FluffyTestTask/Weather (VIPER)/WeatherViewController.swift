@@ -10,7 +10,7 @@ import UIKit
 
 final class WeatherViewController: UIViewController {
     private var tableView = UITableView()
-    private var searcBar = UISearchBar()
+    private var searchBar = UISearchBar()
     private var addButton = UIButton()
     
     private let output: WeatherViewOutput
@@ -36,14 +36,14 @@ final class WeatherViewController: UIViewController {
         view.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
-        searcBar.delegate = self
-        searcBar.searchTextField.enablesReturnKeyAutomatically = false
+        searchBar.delegate = self
+        searchBar.searchTextField.enablesReturnKeyAutomatically = false
         tableView.tableFooterView = UIView()
         tableView.register(CityWeatherTableViewCell.self, forCellReuseIdentifier: "CityTableViewCell")
         setupSearchBar()
         addButton.setupLittleButton(imageName: "", bgImageName: "plus", tintColor: .gray)
         addButton.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
-        [tableView, searcBar, addButton].forEach{
+        [tableView, searchBar, addButton].forEach{
             view.addSubview($0)
         }
         addConstraint()
@@ -52,31 +52,31 @@ final class WeatherViewController: UIViewController {
     @objc
     private func didTapAddButton() {
         addButton.pulsate()
-        if searcBar.text?.isEmpty ?? true{
+        if searchBar.text?.isEmpty ?? true{
             output.didTapAddButton()
         }
     }
     
     func addConstraint() {
-        [tableView, searcBar, addButton].forEach{
+        [tableView, searchBar, addButton].forEach{
             ($0).translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-            searcBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searcBar.heightAnchor.constraint(equalToConstant: 50),
-            searcBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-            searcBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50)
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50)
         ])
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             addButton.heightAnchor.constraint(equalToConstant: 30),
-            addButton.leftAnchor.constraint(equalTo: searcBar.rightAnchor, constant: 10),
+            addButton.leftAnchor.constraint(equalTo: searchBar.rightAnchor, constant: 10),
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10)
         ])
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: searcBar.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -150,9 +150,9 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension WeatherViewController: UISearchBarDelegate{
     func setupSearchBar() {
-         searcBar.placeholder = "Madrid"
-         searcBar.layer.cornerRadius = 10
-         searcBar.alpha = 0.5
+         searchBar.placeholder = "Madrid"
+         searchBar.layer.cornerRadius = 10
+         searchBar.alpha = 0.5
      }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
