@@ -18,6 +18,7 @@ protocol WeatherModuleOutput: class {
 
 protocol WeatherViewInput: class {
     func update(at index: Int)
+    func update ()
     func insert(at index: Int)
     func remove(at index: Int)
 }
@@ -28,6 +29,7 @@ protocol WeatherViewOutput: class {
     func didTapAddButton()
     func didTapRemoveButton(at index: Int)
     func didSelect(at index: Int)
+    func didSearch (with text: String)
     func loadWithCoordinate(city: String, displayType: String)
 }
 

@@ -34,11 +34,10 @@ final class WeatherViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .white
-        
         tableView.dataSource = self
         tableView.delegate = self
         searcBar.delegate = self
-
+        searcBar.searchTextField.enablesReturnKeyAutomatically = false
         tableView.tableFooterView = UIView()
         tableView.register(CityWeatherTableViewCell.self, forCellReuseIdentifier: "CityTableViewCell")
         setupSearchBar()
@@ -47,14 +46,15 @@ final class WeatherViewController: UIViewController {
         [tableView, searcBar, addButton].forEach{
             view.addSubview($0)
         }
-        
         addConstraint()
     }
     
     @objc
     private func didTapAddButton() {
         addButton.pulsate()
-        output.didTapAddButton()
+        if searcBar.text?.isEmpty ?? true{
+            output.didTapAddButton()
+        }
     }
     
     func addConstraint() {
@@ -89,6 +89,10 @@ extension WeatherViewController: WeatherViewInput {
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
+    func update() {
+        tableView.reloadData()
+    }
+    
     func insert(at index: Int) {
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
@@ -112,7 +116,6 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityTableViewCell", for: indexPath) as? CityWeatherTableViewCell else {
             return .init()
         }
-        
         let item = output.display(at: indexPath.row)
         cell.configure(with: item)
         return cell
@@ -146,18 +149,28 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension WeatherViewController: UISearchBarDelegate{
-    func setupSearchBar(){
+    func setupSearchBar() {
          searcBar.placeholder = "Madrid"
          searcBar.layer.cornerRadius = 10
          searcBar.alpha = 0.5
      }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            output.didSearch(with: searchText)
+    }
+
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            output.loadWithCoordinate(city: locationString, displayType: "detailed")
+            output.didSelect(at: 0)
+            //теперь мы ищем город в уже существующем списке
+            //output.loadWithCoordinate(city: locationString, displayType: "detailed")
         }
+        searchBar.endEditing(true)
     }
+    
+  
     
  
 }

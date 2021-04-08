@@ -9,9 +9,8 @@
 import UIKit
 
 struct CityTableViewCellModel {
-    let imageURL: URL?
     let title: String
-    let timeString: String?
+    let condition: String?
     let temperature: Int?
     let icon: String?
 }
@@ -20,7 +19,7 @@ class CityWeatherTableViewCell: UITableViewCell {
     
     private let iconImageView = UIImageView(frame: .zero)
     private let titleLabel = UILabel()
-    private let timeLabel = UILabel()
+    private let conditionLabel = UILabel()
     private let temperatureLabel = UILabel()
     
     required init?(coder: NSCoder) {
@@ -30,23 +29,22 @@ class CityWeatherTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        
     }
     
     private func setup() {
         backgroundColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
         temperatureLabel.font = UIFont.systemFont(ofSize: 38, weight: .medium)
-        timeLabel.textColor = .darkGray
+        conditionLabel.textColor = .darkGray
 
         iconImageView.contentMode = .scaleAspectFill
-        [iconImageView, titleLabel, timeLabel, temperatureLabel].forEach {
+        [iconImageView, titleLabel, conditionLabel, temperatureLabel].forEach {
             contentView.addSubview($0) }
         addConstraint()
     }
     
     func addConstraint () {
-        [contentView, iconImageView, titleLabel, timeLabel, temperatureLabel].forEach {
+        [contentView, iconImageView, titleLabel, conditionLabel, temperatureLabel].forEach {
             ($0).translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -65,10 +63,10 @@ class CityWeatherTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            timeLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width-150),
-            timeLabel.heightAnchor.constraint(equalToConstant: 30),
-            timeLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 30),
-            timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
+            conditionLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width-150),
+            conditionLabel.heightAnchor.constraint(equalToConstant: 30),
+            conditionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 30),
+            conditionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
             
         ])
         
@@ -76,15 +74,14 @@ class CityWeatherTableViewCell: UITableViewCell {
             temperatureLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width-150),
             temperatureLabel.heightAnchor.constraint(equalToConstant: 30),
             temperatureLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 30),
-            temperatureLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 10)
+            temperatureLabel.topAnchor.constraint(equalTo: conditionLabel.bottomAnchor, constant: 10)
         ])
     }
     
     func configure(with model: CityTableViewCellModel) {
         iconImageView.image = UIImage(named: model.icon ?? "")
         titleLabel.text = model.title
-        timeLabel.text = model.timeString
-        
+        conditionLabel.text = model.condition
         if let temperature = model.temperature {
             temperatureLabel.text = "\(temperature)˚C"
         } else {

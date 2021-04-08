@@ -17,6 +17,9 @@ final class WeatherPresenter {
     private let interactor: WeatherInteractorInput
     
     private var cities: [String] = ["Moscow", "London", "New York", "Berlin", "Rome", "Bern", "Paris", "Monaco", "Stockholm", "Dublin"]
+   //возможно не самое лаконичное решение, но мне кажется это тот случай когда дублирование оправдано (только если городов не будет значительно больше), я с радостью выслушаю Ваш фидбэк по этому кейсу :)
+   private var defaultCities: [String] = ["Moscow", "London", "New York", "Berlin", "Rome", "Bern", "Paris", "Monaco", "Stockholm", "Dublin"]
+    
     private var weatherByName: [String: Weather] = [:]
     
     
@@ -38,15 +41,14 @@ extension WeatherPresenter: WeatherViewOutput {
     func display(at index: Int) -> CityTableViewCellModel {
         let city = cities[index]
         if let currentWeather = weatherByName[city] {
-            return CityTableViewCellModel(imageURL: nil,
-                                          title: currentWeather.geo_object.locality.name,
-                                          timeString: currentWeather.fact.condition,
+            return CityTableViewCellModel(title: currentWeather.geo_object.locality.name,
+                                          condition: currentWeather.fact.condition,
                                           temperature: Int(currentWeather.fact.temp), icon: currentWeather.fact.icon)
         } else {
             loadWithCoordinate(city: city, displayType: "brief")
         }
     
-        return CityTableViewCellModel(imageURL: nil, title: cities[index], timeString: nil, temperature: nil, icon: nil)
+        return CityTableViewCellModel(title: cities[index], condition: nil, temperature: nil, icon: nil)
     }
     
     func didTapAddButton() {
@@ -54,26 +56,43 @@ extension WeatherPresenter: WeatherViewOutput {
             guard let self = self, let city = city else {
                 return
             }
-            
-            self.cities.append(city)
-            if let index = self.cities.firstIndex(of: city) {
+            self.defaultCities.append(city)
+            if let index = self.defaultCities.firstIndex(of: city) {
+                self.cities = self.defaultCities
                 self.view?.insert(at: index)
             }
         }
     }
     
     func didTapRemoveButton(at index: Int) {
-        self.cities.remove(at: index)
+        self.defaultCities.remove(at: index)
+        self.cities = self.defaultCities
         self.view?.remove(at: index)
     }
     
     
     func didSelect(at index: Int) {
-        let city = cities[index]
-        guard let currentWeather = weatherByName[city] else {
-            return
+        if !cities.isEmpty{
+            let city = cities[index]
+            guard let currentWeather = weatherByName[city] else {
+                return
+            }
+            router.show(currentWeather)
         }
-        router.show(currentWeather)
+    }
+    
+
+    func didSearch (with text: String) {
+        if !text.isEmpty{
+            let currentCities = defaultCities.filter({ cities -> Bool in
+                return cities.lowercased().contains(text.lowercased())
+            })
+            cities = currentCities
+            self.view?.update()
+        } else {
+            cities = defaultCities
+            self.view?.update()
+        }
     }
     
     
@@ -104,7 +123,6 @@ extension WeatherPresenter: WeatherInteractorOutput {
                 guard let weather = currentWeather else {
                     return
                 }
-                print (weather.fact.icon)
                 router.show(weather)
         }
     }

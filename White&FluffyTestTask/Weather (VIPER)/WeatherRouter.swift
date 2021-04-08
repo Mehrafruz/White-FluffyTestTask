@@ -28,7 +28,7 @@ extension WeatherRouter: WeatherRouterInput {
     }
     
     func show(_ currentWeather: Weather) {
-        let cityWeatherViewController = CityWeatherViewController()
+        let cityWeatherViewController = CityDetailWeatherViewController()
         cityWeatherViewController.currentWeather = currentWeather
         viewController?.present(cityWeatherViewController, animated: true, completion: nil)
     }

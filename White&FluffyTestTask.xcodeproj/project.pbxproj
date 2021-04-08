@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EFFF5194261EF1020076BEF2 /* CityDetailTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF5193261EF1020076BEF2 /* CityDetailTableViewHeader.swift */; };
+		EFFF5199261F01990076BEF2 /* CityDetailWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF5198261F01990076BEF2 /* CityDetailWeatherTableViewCell.swift */; };
 		EFFFD222261AEE4A009EE71B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD221261AEE4A009EE71B /* AppDelegate.swift */; };
 		EFFFD22B261AEE4D009EE71B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFFD22A261AEE4D009EE71B /* Assets.xcassets */; };
 		EFFFD22E261AEE4D009EE71B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFFD22C261AEE4D009EE71B /* LaunchScreen.storyboard */; };
@@ -19,11 +21,13 @@
 		EFFFD244261AF038009EE71B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD243261AF038009EE71B /* NetworkManager.swift */; };
 		EFFFD247261AF070009EE71B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD246261AF070009EE71B /* Weather.swift */; };
 		EFFFD24A261AF096009EE71B /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD249261AF096009EE71B /* UIButton.swift */; };
-		EFFFD24D261AF121009EE71B /* CityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD24C261AF121009EE71B /* CityWeatherViewController.swift */; };
+		EFFFD24D261AF121009EE71B /* CityDetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD24C261AF121009EE71B /* CityDetailWeatherViewController.swift */; };
 		EFFFD24F261AF131009EE71B /* CityWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFD24E261AF131009EE71B /* CityWeatherTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EFFF5193261EF1020076BEF2 /* CityDetailTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailTableViewHeader.swift; sourceTree = "<group>"; };
+		EFFF5198261F01990076BEF2 /* CityDetailWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		EFFFD21E261AEE4A009EE71B /* White&FluffyTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "White&FluffyTestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFFD221261AEE4A009EE71B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFFFD22A261AEE4D009EE71B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,7 +42,7 @@
 		EFFFD243261AF038009EE71B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EFFFD246261AF070009EE71B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		EFFFD249261AF096009EE71B /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
-		EFFFD24C261AF121009EE71B /* CityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherViewController.swift; sourceTree = "<group>"; };
+		EFFFD24C261AF121009EE71B /* CityDetailWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailWeatherViewController.swift; sourceTree = "<group>"; };
 		EFFFD24E261AF131009EE71B /* CityWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +57,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EFFF5195261EF11D0076BEF2 /* DetailWeatherViews */ = {
+			isa = PBXGroup;
+			children = (
+				EFFFD24C261AF121009EE71B /* CityDetailWeatherViewController.swift */,
+				EFFF5193261EF1020076BEF2 /* CityDetailTableViewHeader.swift */,
+				EFFF5198261F01990076BEF2 /* CityDetailWeatherTableViewCell.swift */,
+			);
+			path = DetailWeatherViews;
+			sourceTree = "<group>";
+		};
 		EFFFD215261AEE4A009EE71B = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +102,8 @@
 			children = (
 				EFFFD24B261AF0FD009EE71B /* Views */,
 				EFFFD235261AEFC9009EE71B /* WeatherPresenter.swift */,
-				EFFFD236261AEFC9009EE71B /* WeatherRouter.swift */,
 				EFFFD237261AEFC9009EE71B /* WeatherViewController.swift */,
+				EFFFD236261AEFC9009EE71B /* WeatherRouter.swift */,
 				EFFFD238261AEFC9009EE71B /* WeatherProtocols.swift */,
 				EFFFD239261AEFC9009EE71B /* WeatherInteractor.swift */,
 				EFFFD23A261AEFC9009EE71B /* WeatherContainer.swift */,
@@ -125,7 +139,7 @@
 		EFFFD24B261AF0FD009EE71B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EFFFD24C261AF121009EE71B /* CityWeatherViewController.swift */,
+				EFFF5195261EF11D0076BEF2 /* DetailWeatherViews */,
 				EFFFD24E261AF131009EE71B /* CityWeatherTableViewCell.swift */,
 			);
 			path = Views;
@@ -203,11 +217,13 @@
 			files = (
 				EFFFD23E261AEFC9009EE71B /* WeatherProtocols.swift in Sources */,
 				EFFFD24F261AF131009EE71B /* CityWeatherTableViewCell.swift in Sources */,
+				EFFF5199261F01990076BEF2 /* CityDetailWeatherTableViewCell.swift in Sources */,
 				EFFFD23D261AEFC9009EE71B /* WeatherViewController.swift in Sources */,
+				EFFF5194261EF1020076BEF2 /* CityDetailTableViewHeader.swift in Sources */,
 				EFFFD23B261AEFC9009EE71B /* WeatherPresenter.swift in Sources */,
 				EFFFD240261AEFC9009EE71B /* WeatherContainer.swift in Sources */,
 				EFFFD247261AF070009EE71B /* Weather.swift in Sources */,
-				EFFFD24D261AF121009EE71B /* CityWeatherViewController.swift in Sources */,
+				EFFFD24D261AF121009EE71B /* CityDetailWeatherViewController.swift in Sources */,
 				EFFFD24A261AF096009EE71B /* UIButton.swift in Sources */,
 				EFFFD244261AF038009EE71B /* NetworkManager.swift in Sources */,
 				EFFFD222261AEE4A009EE71B /* AppDelegate.swift in Sources */,
